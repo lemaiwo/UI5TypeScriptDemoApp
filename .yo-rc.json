@@ -1,0 +1,14 @@
+{
+  "generator-ui5-ts-app": {
+    "application": "TypeScriptDemo",
+    "namespace": "be.wl",
+    "framework": "OpenUI5",
+    "frameworkVersion": "1.90.1",
+    "author": "lemaiwo",
+    "tstypes": "@openui5/ts-types-esm",
+    "tstypesVersion": "1.90.1",
+    "appId": "be.wl.TypeScriptDemo",
+    "appURI": "be/wl/TypeScriptDemo",
+    "setupCompleted": true
+  }
+}
