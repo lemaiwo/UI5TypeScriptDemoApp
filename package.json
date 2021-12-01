@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-typescript": "^7.13.0",
     "@openui5/ts-types-esm": "1.90.1",
+    "@sap/ux-ui5-tooling": "^1.4.1",
     "@types/jquery": "3.5.1",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
@@ -35,7 +36,8 @@
   },
   "ui5": {
     "dependencies": [
-      "ui5-middleware-livereload"
+      "ui5-middleware-livereload",
+      "@sap/ux-ui5-tooling"
     ]
   }
 }

@@ -1,6 +1,5 @@
 {
 	"_version": "1.12.0",
-
 	"sap.app": {
 		"id": "be.wl.TypeScriptDemo",
 		"type": "application",
@@ -9,21 +8,27 @@
 		"description": "{{app_description}}",
 		"applicationVersion": {
 			"version": "1.0.0"
+		},
+		"dataSources": {
+			"Northwind.svc": {
+				"uri": "/V2/(S(mo4mpsdbi0fygmzhfv5ik5gf))/OData/OData.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
-		"icons": {
-
-		},
+		"icons": {},
 		"deviceTypes": {
 			"desktop": true,
 			"tablet": true,
 			"phone": true
 		}
 	},
-
 	"sap.ui5": {
 		"rootView": {
 			"viewName": "be.wl.TypeScriptDemo.view.App",
@@ -31,7 +36,6 @@
 			"async": true,
 			"id": "app"
 		},
-
 		"dependencies": {
 			"minUI5Version": "1.90.1",
 			"libs": {
@@ -41,25 +45,29 @@
 				"sap.m": {}
 			}
 		},
-
 		"handleValidation": true,
-
 		"contentDensities": {
 			"compact": true,
 			"cozy": true
 		},
-
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
 					"bundleName": "be.wl.TypeScriptDemo.i18n.i18n"
 				}
+			},
+			"": {
+				"dataSource": "Northwind.svc",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "None"
+				},
+				"preload": false
 			}
 		},
-
-		"routing": {
-			
-		}
+		"routing": {}
 	}
 }

@@ -1,5 +1,8 @@
 import UIComponent from "sap/ui/core/UIComponent";
 import { support } from "sap/ui/Device";
+import ODataModel from "sap/ui/model/odata/v2/ODataModel";
+import NorthwindService from "./service/NorthwindService";
+import NorthwindState from "./state/NorthwindState";
 
 
 /**
@@ -12,10 +15,13 @@ export default class Component extends UIComponent {
 	};
 
 	private contentDensityClass : string;
-
+	private northwindService: NorthwindService;
+	public northwindState: NorthwindState;
 	public init() : void {
 		// call the base component's init function
 		super.init();
+		this.northwindService = new NorthwindService((this.getModel() as ODataModel));
+		this.northwindState = new NorthwindState(this.northwindService);
 	}
 
 	/**

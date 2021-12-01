@@ -2,21 +2,82 @@
 	controllerName="be.wl.TypeScriptDemo.controller.App"
 	displayBlock="true"
 	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc">
 
 	<App id="app">
-		<MessagePage
-			title="{i18n>app_title}"
-			text="{i18n>app_title}"
-			icon="sap-icon://accept"
-			id="page"
-			description="{i18n>app_description}">
-			<buttons>
-				<Button
-					text="{i18n>btn_text}"
-					press="sayHello" />
-			</buttons>
-		</MessagePage>
+		<pages>
+			<Page title="{i18n>title}">
+				<f:Form editable="true">
+					<f:toolbar>
+						<Toolbar id="TB1">
+							<Title id="Title1" text="Supplier"/>
+							<ToolbarSpacer />
+							<Button icon="sap-icon://save" press=".onSaveSupplier"/>
+						</Toolbar>
+					</f:toolbar>
+					<f:layout>
+						<f:ResponsiveGridLayout
+							labelSpanXL="3"
+							labelSpanL="3"
+							labelSpanM="3"
+							labelSpanS="12"
+							adjustLabelSpan="false"
+							emptySpanXL="4"
+							emptySpanL="4"
+							emptySpanM="4"
+							emptySpanS="0"
+							columnsXL="1"
+							columnsL="1"
+							columnsM="1"
+							singleContainerFullSize="false" />
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer>
+							<f:formElements>
+								<f:FormElement label="Name">
+									<f:fields>
+										<Input value="{state>/supplier/name}" valueState="{state>/supplier/nameValueState}"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Concurrency">
+									<f:fields>
+										<Input value="{state>/supplier/concurrency}" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Street">
+									<f:fields>
+										<Input value="{state>/supplier/address/street}" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="ZIP Code/City">
+									<f:fields>
+										<Input value="{state>/supplier/address/zipCode}">
+											<layoutData>
+												<l:GridData span="XL1 L2 M2 S4" />
+											</layoutData>
+										</Input>
+										<Input value="{state>/supplier/address/city}" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="State">
+									<f:fields>
+										<Input value="{state>/supplier/address/state}" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Country">
+									<f:fields>
+										<Input value="{state>/supplier/address/country}" />
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</Page>
+		</pages>
 	</App>
 
 </mvc:View>

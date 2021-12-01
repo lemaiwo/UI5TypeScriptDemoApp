@@ -12,6 +12,13 @@ framework:
     - name: themelib_sap_fiori_3
 server:
   customMiddleware:
+  - name: fiori-tools-proxy
+    afterMiddleware: compression
+    configuration:
+      ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+      backend:
+      - path: /v2
+        url: https://services.odata.org/
   - name: ui5-middleware-livereload
     afterMiddleware: compression
     configuration:
