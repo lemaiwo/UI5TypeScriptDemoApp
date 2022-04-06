@@ -15,6 +15,7 @@
 						<Toolbar id="TB1">
 							<Title id="Title1" text="Supplier"/>
 							<ToolbarSpacer />
+							<Button text="Open Dialog" press=".openDialog"></Button>
 							<Button icon="sap-icon://save" press=".onSaveSupplier"/>
 						</Toolbar>
 					</f:toolbar>
