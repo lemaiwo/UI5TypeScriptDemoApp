@@ -65,10 +65,7 @@ export default class BaseController extends Controller {
 	public onExit(): void {
 		_fragments = {};
 	}
-	public async openFragment(config: { name: string, model?: Model, updateModelAlways?: boolean, callback?: () => void, data?: unknown, popoverSource?: Popover, autoOpen?: boolean }): Promise<unknown> {
-		if (config.autoOpen === undefined || config.autoOpen === null) {
-			config.autoOpen = true;
-		}
+	public async openFragment(config: { name: string, data?: unknown, popoverSource?: Popover }): Promise<unknown> {
 		let viewName: string[];
 		if (config.name.indexOf(".") > 0) {//full path
 			viewName = config.name.split(".");
@@ -105,40 +102,11 @@ export default class BaseController extends Controller {
 				}
 			}
 		});
-		if (config.autoOpen) {
-			if (config.popoverSource) {
-				(_fragments[id].fragment as unknown as Popover).openBy(config.popoverSource, false);
-			} else {
-				(_fragments[id].fragment as Dialog).open();
-			}
+		if (config.popoverSource) {
+			(_fragments[id].fragment as unknown as Popover).openBy(config.popoverSource, false);
+		} else {
+			(_fragments[id].fragment as Dialog).open();
 		}
 		return closedPromise;//_fragments[id].fragment;
-	}
-	private showFragment(options: { callback?: () => void, data?: unknown, popoverSource?: Popover, autoOpen?: boolean, fragment: frag }) {
-		const callback = options.callback,
-			data = options.data,
-			popoverSource = options.popoverSource,
-			autoOpen = options.autoOpen,
-			dialog = options.fragment;
-
-		if (dialog.controller && (dialog.controller as Controller) !== this) {
-			if ("onBeforeShow" in dialog.controller) {
-				dialog.controller.onBeforeShow(this, dialog, callback, data, popoverSource);
-			}
-		}
-		// syncStyleClass((this.getView().getController().getOwnerComponent() as  Component).getContentDensityClass(), this.getView(), dialog.fragment);
-		// const time = 1;
-		// if (popoverSource) {
-		// 	time = 1000;
-		// }
-		if (autoOpen) {
-			// setTimeout(function () {
-			if (popoverSource) {
-				(dialog.fragment as unknown as Popover).openBy(popoverSource, false);
-			} else {
-				(dialog.fragment as Dialog).open();//data && "search" in data && data.search ? data.search : '');
-			}
-			// }, time);
-		}
 	}
 }
