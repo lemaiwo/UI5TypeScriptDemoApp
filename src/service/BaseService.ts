@@ -55,7 +55,7 @@ export default class BaseService extends Object {
                         reject(error);
                     };
                     if(data){
-                        this.model[type](url,data,params);
+                        this.model[type](url,data as unknown as Record<string, unknown>,params);
                     }else{
                         this.model[type](url,params);
                     }
